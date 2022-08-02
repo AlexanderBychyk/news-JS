@@ -1,11 +1,24 @@
+interface IOptions {
+    apiKey: string;
+}
+
+interface IResp {
+    endpoint: string;
+    options?: {
+        sources?: string;
+    }
+}
+
 class Loader {
-    constructor(baseLink, options) {
+    baseLink: string;
+    options: IOptions
+    constructor(baseLink: string, options: IOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {} },
+        { endpoint, options = {} } : IResp,
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -23,7 +36,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options, endpoint) {
+    makeUrl(options, endpoint: string) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -34,7 +47,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method, endpoint, callback, options = {}) {
+    load(method: string, endpoint: string, callback: () => void, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())
