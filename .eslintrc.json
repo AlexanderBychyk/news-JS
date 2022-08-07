@@ -10,6 +10,7 @@
     ],
     "parserOptions": {
         "ecmaVersion": 2020,
+        "project": ["tsconfig.json"],
         "sourceType": "module"
     },
     "env": {
@@ -20,7 +21,6 @@
     "rules": {
         "no-debugger": "off",
         "no-console": 0,
-        "class-methods-use-this": "off",
-        "no-explicit-any": "on"
+        "class-methods-use-this": "off"
     }
 }
