@@ -3,14 +3,13 @@ import INewsItem from '../../interfaces/INewsItem';
 import './news.css';
 
 class News {
-    draw(data: []) {
+    public draw(data: []) {
         const news = (data.length >= 10 ? data.filter((_item: IItem, idx: number) => idx < 10) : data) as [];
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
 
-        news.forEach((item: INewsItem, idx: number) => {
-            console.log('my itme', item);
+        news.forEach((item: INewsItem<string>, idx: number) => {
             const newsClone = newsItemTemp.content.cloneNode(true) as HTMLTemplateElement;
 
             if (idx % 2) (newsClone.querySelector('.news__item') as HTMLElement).classList.add('alt');

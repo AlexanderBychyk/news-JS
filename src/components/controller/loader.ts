@@ -2,24 +2,29 @@ import IData from '../interfaces/IData';
 import IGetNewsCallback from '../interfaces/IGetNewsCallback.js';
 import IOptions from '../interfaces/IOptions';
 
+enum statusCode {
+    Unauthorized = 401,
+    NotFound = 404,
+}
+
 interface IThisOptions {
     apiKey: string;
 }
 
 interface IResp {
     endpoint: 'sources' | 'everything';
-    options?: IOptions;
+    options?: Partial<IOptions>;
 }
 
 class Loader {
-    baseLink: string;
-    options: IThisOptions;
+    private baseLink: string;
+    private options: IThisOptions;
     constructor(baseLink: string, options: IThisOptions) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
-    getResp(
+    protected getResp(
         { endpoint, options = {} }: IResp,
         callback: IGetNewsCallback = () => {
             console.error('No callback for GET response');
@@ -28,9 +33,9 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler = (res: Response) => {
+    protected errorHandler = (res: Response) => {
         if (!res.ok) {
-            if (res.status === 401 || res.status === 404)
+            if (res.status === statusCode.Unauthorized || res.status === statusCode.NotFound)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
             throw Error(res.statusText);
         }
@@ -38,9 +43,8 @@ class Loader {
         return res;
     };
 
-    makeUrl(options: IOptions, endpoint: string) {
+    protected makeUrl(options: Partial<IOptions>, endpoint: string) {
         const urlOptions: { apiKey: string } = { ...this.options, ...options };
-        console.log(urlOptions);
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {
@@ -49,7 +53,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: IGetNewsCallback, options = {}) {
+    protected load(method: string, endpoint: string, callback: IGetNewsCallback, options = {}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

@@ -1,5 +1,5 @@
 interface IOptions {
-    sources?: string;
+    sources: string;
 }
 
 export default IOptions;

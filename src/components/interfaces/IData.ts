@@ -1,8 +1,10 @@
+type SourcesType = [] | string;
+
 interface IData {
     status: 'ok';
-    sources?: [] | string;
+    sources?: SourcesType;
     articles?: [];
-    totalResult: 4421;
+    totalResult: number;
 }
 
 export default IData;

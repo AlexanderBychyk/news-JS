@@ -2,7 +2,7 @@ import IGetNewsCallback from '../interfaces/IGetNewsCallback';
 import AppLoader from './appLoader';
 
 class AppController extends AppLoader {
-    getSources(callback: IGetNewsCallback) {
+    public getSources(callback: IGetNewsCallback) {
         super.getResp(
             {
                 endpoint: 'sources',
@@ -11,7 +11,7 @@ class AppController extends AppLoader {
         );
     }
 
-    getNews(e: MouseEvent, callback: IGetNewsCallback) {
+    public getNews(e: MouseEvent, callback: IGetNewsCallback) {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget as HTMLElement;
 

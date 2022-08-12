@@ -2,7 +2,7 @@ import IItem from '../../interfaces/IItems';
 import './sources.css';
 
 class Sources {
-    draw(data: []) {
+    public draw(data: []) {
         const fragment = document.createDocumentFragment();
         const sourceItemTemp = document.querySelector('#sourceItemTemp') as HTMLTemplateElement;
 

@@ -1,15 +1,15 @@
-interface INewsItem {
-    author: string;
-    content: string;
-    description: string;
-    publishedAt: string;
+interface INewsItem<T> {
+    author: T;
+    content: T;
+    description: T;
+    publishedAt: T;
     source: {
-        id: string;
-        name: string;
+        id: T;
+        name: T;
     };
-    title: string;
-    url: string;
-    urlToImage: string;
+    title: T;
+    url: T;
+    urlToImage: T;
 }
 
 export default INewsItem;
