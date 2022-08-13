@@ -14,7 +14,6 @@ class App {
         const sources = document.querySelector('.sources') as HTMLDivElement;
         sources.addEventListener('click', (e: MouseEvent) =>
             this.controller.getNews(e, (data: IData) => {
-                console.log('IData', data);
                 this.view.drawNews(data);
             })
         );
