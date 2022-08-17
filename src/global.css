@@ -1,21 +1,31 @@
+html {
+    height: 100%;
+}
 body {
     color: #fff;
     background: #17181c;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
-
 header {
+    flex: 0 0 auto;
     padding: 10px 30px;
 }
-
 header h1 {
     font-size: 40px;
     font-weight: 800;
 }
-
+main {
+    flex: 1 0 auto;
+}
 footer {
+    flex: 0 0 auto;
+    margin: 0 20px;
     height: 100px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -32,4 +42,31 @@ footer .copyright a:hover {
 }
 footer .copyright:before {
     content: '©';
+}
+.information {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+} 
+.information p {
+    cursor: default;
+}
+.information a {
+    width: 100px;
+    color: #444;
+}
+.information a:hover {
+    color: #555;
+}
+@media (max-width: 375px) {
+    footer {
+        height: fit-content;
+    }
+    .information {
+        flex-direction: column;
+    }   
+    .information a:nth-child(1) {
+        width: fit-content;
+    }
 }
