@@ -1,9 +1,10 @@
-type SourcesType = [] | string;
+import IItem from './IItems';
+import INewsItem from './INewsItem';
 
 interface IData {
     status: 'ok';
-    sources?: SourcesType;
-    articles?: [];
+    sources?: IItem[];
+    articles?: INewsItem<string>[];
     totalResult: number;
 }
 

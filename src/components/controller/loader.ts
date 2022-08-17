@@ -11,8 +11,10 @@ interface IThisOptions {
     apiKey: string;
 }
 
+type EndpointType = 'sources' | 'everything';
+
 interface IResp {
-    endpoint: 'sources' | 'everything';
+    endpoint: EndpointType;
     options?: Partial<IOptions>;
 }
 

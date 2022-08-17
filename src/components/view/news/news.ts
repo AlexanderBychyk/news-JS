@@ -3,8 +3,8 @@ import INewsItem from '../../interfaces/INewsItem';
 import './news.css';
 
 class News {
-    public draw(data: []) {
-        const news = (data.length >= 10 ? data.filter((_item: IItem, idx: number) => idx < 10) : data) as [];
+    public draw(data: INewsItem<string>[]) {
+        const news = (data.length >= 10 ? data.filter((_item, idx: number) => idx < 10) : data);
 
         const fragment = document.createDocumentFragment();
         const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
